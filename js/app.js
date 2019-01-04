@@ -15,18 +15,18 @@ var $wallPage;
 
 var pages;
 
-$(document).ready(function(){
-  $resultsContainer = $("#results");
-   
-   $eventsTab = $("#events-tab");
-   $weatherTab = $("#weather-tab");
-   $wallTab = $("#wall-tab");
-   
-   $eventsPage = $("#events-page");
-   $weatherPage = $("#weather-page");
-   $wallPage = $("#wall-page");
+$(document).ready(function () {
+    $resultsContainer = $("#results");
 
-   pages = [$eventsPage, $weatherPage, $wallPage];
+    $eventsTab = $("#events-tab");
+    $weatherTab = $("#weather-tab");
+    $wallTab = $("#wall-tab");
+
+    $eventsPage = $("#events-page");
+    $weatherPage = $("#weather-page");
+    $wallPage = $("#wall-page");
+
+    pages = [$eventsPage, $weatherPage, $wallPage];
 
     //set up listeners for tabs
     $eventsTab.click(() => selectPage($eventsPage));
@@ -38,9 +38,9 @@ $(document).ready(function(){
 
 });
 
-function selectPage($selectedPage){
+function selectPage($selectedPage) {
     //hide everything
-    pages.forEach( ($page) => {
+    pages.forEach(($page) => {
         $page.hide();
     });
     $selectedPage.show();
@@ -54,44 +54,44 @@ function runEventQuery(queryTerm) {
     $.ajax({
         url: queryURL,
         method: "GET"
-    }).then(function(response) {
+    }).then(function (response) {
 
         $resultsContainer.empty();
-            response.events.forEach((eventBriteEvent) => {
-                var logoURL= eventBriteEvent.logo.original.url;
-                var image = $("<img>").attr("src", logoURL);
-                var eventName = eventBriteEvent.name.text;
+        response.events.forEach((eventBriteEvent) => {
+            var logoURL = eventBriteEvent.logo.original.url;
+            var image = $("<img>").attr("src", logoURL);
+            var eventName = eventBriteEvent.name.text;
 
-                var eventDesc = eventBriteEvent.description.text;
-                var eventStart = eventBriteEvent.start.local;
-                var eventEnd = eventBriteEvent.end.local;
-                
-                var $col = $("<div/>", { class: "col s12 m7" }),
-                    $card = $("<div/>", { class: "card" }),
-                    $cardImg = $("<div/>", { class: "card-image"}),
-                    $cardContent = $("<div/>", { class: "card-content"});
+            var eventDesc = eventBriteEvent.description.text;
+            var eventStart = eventBriteEvent.start.local;
+            var eventEnd = eventBriteEvent.end.local;
+
+            var $col = $("<div/>", { class: "col s12 m7" }),
+                $card = $("<div/>", { class: "card" }),
+                $cardImg = $("<div/>", { class: "card-image" }),
+                $cardContent = $("<div/>", { class: "card-content" });
 
 
-                $col.append($card);
-                
-                $cardImg.append(image); 
-                $cardImg.append("<span class='card-title'>" + eventName + "</span>");
-                $cardContent.append("<p><b>Description : </b>" + eventDesc + "</p>");
-                $cardContent.append("<p><b>Start : </b>" + new Date(eventStart) + "</p>");
-                $cardContent.append("<p><b>End : </b>" + new Date(eventEnd) + "</p>");
+            $col.append($card);
 
-                $card.append($cardImg);
-                $card.append($cardContent);
+            $cardImg.append(image);
+            $cardImg.append("<span class='card-title'>" + eventName + "</span>");
+            $cardContent.append("<p><b>Description : </b>" + eventDesc + "</p>");
+            $cardContent.append("<p><b>Start : </b>" + new Date(eventStart) + "</p>");
+            $cardContent.append("<p><b>End : </b>" + new Date(eventEnd) + "</p>");
 
-                $resultsContainer.append($col);
-            });       
+            $card.append($cardImg);
+            $card.append($cardContent);
 
+            $resultsContainer.append($col);
         });
+
+    });
 
 };
 
 // onclick function for searching the EVENTBRITE query
-$('#searchForm').submit(function(event) {
+$('#searchForm').submit(function (event) {
     event.preventDefault();
     var newQuery = $('#search').val().trim();
     console.log(newQuery);
@@ -114,6 +114,6 @@ var queryWeatherURL = 'http://api.openweathermap.org/data/2.5/forecast?id=530865
 //     url: queryWeatherURL,
 //     method: "GET"
 // }).then(function(response) {
-      
+
 
 //     });
