@@ -23,6 +23,21 @@ var config = {
         size : partySize
   };
 
+wallPageDatabase.ref().push(informationAdded);
+
+console.log(homeTown);
+console.log(plannedEvent);
+console.log(partySize);
+
+alert("Your information has been added");
+
+$("#home-town").val("");
+$("#planned-event").val("");
+$("#party-size").val("");
+
+return false;
+});
+  
 // auth key EVENTBRITE
 var authEventKey = 'ZTWSATUDOEFRKTLCTYET';
 
