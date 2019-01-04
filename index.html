@@ -41,10 +41,21 @@
  </div>
 
 
-
+<div class="container">
  <div id="weather-page">
-   Weather Page. 
+   <h1>Weather Page</h1> 
+   <p id="location">The Valley of the Sun</p>
+   <p><span id="day-time"></span></p>
+   <div>
+     <canvas id="condition" width="64" height="64"></canvas>
+     <span id="temp">75</span><span id="units"></span><br>
+   </div>
+   <div>
+     <div id="fah">F</div>
+     <div id="cel">C</div>
+   </div>
  </div>
+</div>
 
 
 
@@ -81,7 +92,7 @@
     
                   </div>
                   <div class="card-action">
-                      <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                      <button class="btn waves-effect waves-light" type="submit" name="action" id="add-info-button">Submit
                           <i class="material-icons right">send</i>
                       </button>
                   </div>

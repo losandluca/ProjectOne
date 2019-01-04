@@ -3,3 +3,12 @@
     font-weight: bolder;
     background: rgba(0, 0, 100, 0.507);
 }
+
+#events-tab:hover,
+#weather-tab:hover,
+#wall-tab:hover {
+    background-color: #555555;
+    color: white;
+    border-radius: 2px;
+}
+

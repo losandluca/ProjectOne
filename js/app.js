@@ -1,3 +1,28 @@
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBbBXnNFqDNP2pG-BVTvpmUqgh6UdCr3wo",
+    authDomain: "groupprojectone-12d0c.firebaseapp.com",
+    databaseURL: "https://groupprojectone-12d0c.firebaseio.com",
+    projectId: "groupprojectone-12d0c",
+    storageBucket: "groupprojectone-12d0c.appspot.com",
+    messagingSenderId: "866266191637"
+  };
+  firebase.initializeApp(config);
+
+  var wallPageDatabase = firebase.database();
+
+  $("#add-info-button").on("click", function(){
+
+    var homeTown = $("#home-town").val().trim();
+    var plannedEvent = $("#planned-event").val().trim();
+    var partySize = $("#party-size").val().trim();
+
+    var informationAdded = {
+        home : homeTown,
+        event : plannedEvent,
+        size : partySize
+  };
+
 // auth key EVENTBRITE
 var authEventKey = 'ZTWSATUDOEFRKTLCTYET';
 
