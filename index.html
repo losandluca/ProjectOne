@@ -12,19 +12,33 @@
   <!-- Jquery-->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 
-</head>
 
+</head>
 
 <body>
 
-  <!-- Buttons!!! -->
-  <button id="events-tab">Events</button>
-  <button id='weather-tab'>Weather</button>
-  <button id='wall-tab'>Wall</button>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo center">Phoenix Events</a>
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+      <ul class="right hide-on-med-and-down">
+        <button id="events-tab">Events</button>
+        <button id='weather-tab'>Weather</button>
+        <button id='wall-tab'>Wall</button>
+      </ul>
+    </div>
+  </nav>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li><a href="#events-page">Events</a></li>
+    <li><a href="#weather-page">Weather</a></li>
+    <li><a href="#wall-page">Wall</a></li>
+
+  </ul>
   <div id="events-page">
     <nav>
       <div class="nav-wrapper">
-        <a href="#!" class="brand-logo left">PHX Events!</a>
+        <a href="#!" class="brand-logo left"></a>
         <form id="searchForm">
           <div class="input-field right">
             <input type="search" placeholder="search" name="searchQuery" id="search" required>
@@ -37,6 +51,29 @@
         </form>
       </div>
     </nav>
+
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src="img/arizonaone.jpeg"> <!-- slider image -->
+        </li>
+        <li>
+          <img src="img/arizonatwo.jpg"> <!-- slider image -->
+        </li>
+        <li>
+          <img src="img/arizonathree.jpeg"> <!-- slider image -->
+        </li>
+        <li>
+          <img src="img/arizonafour.jpeg"> <!-- slider image -->
+        </li>
+        <li>
+          <img src="img/arizonafive.jpeg"> <!-- slider image -->
+        </li>
+        <li>
+          <img src="img/arizonasix.jpeg"> <!-- slider image -->
+        </li>
+      </ul>
+    </div>
     <br><br>
     <div id="results" class="row">
     </div>
@@ -119,5 +156,22 @@
 <!--JavaScript at end of body for optimized loading-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
 <script type="text/javascript" src="js/materialize.min.js"></script>
-<script type="text/javascript" src="js/app.js" charset="UTF-8"></script>
+<script type="text/javascript" src="js/app.js" charset="UTF-8"></script>  
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 </body>
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
+
+  <!--sidenav-->
+
+
+  <!--Materializecss Slider-->
+  <script>
+    $(document).ready(function () {
+      $('.slider').slider({ full_width: true });
+    });
+  </script>
+</body>
+
+</html>
