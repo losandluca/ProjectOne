@@ -110,7 +110,8 @@ $('#searchForm').submit(function (event) {
 
 
 // query URL for WEATHER
-var queryWeatherURL = 'http://api.openweathermap.org/data/2.5/forecast?id=5308655&APPID=3e6d467ec628733e79187ab3ed77a3d8&units=imperial';
+var queryWeatherURL = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=phoenix&APPID=001b0f58045147663b1ea518d34d88b4&units=imperial&cnt=5';
+
 
 // weather function
 function runWeatherQuery() {
@@ -121,14 +122,37 @@ function runWeatherQuery() {
         url: queryWeatherURL,
         method: "GET"
     }).then(function (responseWeather) {
-        console.log(responseWeather.list[0].dt_txt);
-        console.log(responseWeather)
+        // loop for weather response list
+        responseWeather.list.forEach((weatherEvent) => {
+            var date = weatherEvent.dt
+            var minTemp = weatherEvent.temp.min
+            var maxTemp = weatherEvent.temp.max;
+            var windSpeed = weatherEvent.speed;
+            var humidity = weatherEvent.humidity;
+
+        var dateTimeString = moment.unix(date).format("MM-DD-YYYY")
+        console.log(dateTimeString);
+
         // append results to table!
-        $(".tableArea").append(
-            "<tr><td> " + responseWeather.list[0].dt_txt +
-            "<tr><td>" + responseWeather.list[0].main.temp_max +
-            "</td>");
+        $(".tableArea").append("<tr>" +
+            "<td> " + dateTimeString +
+            "<td>" + minTemp + '°F' +
+            "<td>" + maxTemp + '°F' +
+            "<td>" + windSpeed + ' m/h'+
+            "<td>" + humidity +'%'+
+            "</td>");    
+
+
+            // weather img icon
+            var iconcode = weatherEvent.weather[0].icon;
+    var iconurl = "http://openweathermap.org/img/w/" + iconcode + ".png";
+    console.log(iconurl);
+
+
+        });
     });
+
+
 };
 // run weather function
 runWeatherQuery();
