@@ -108,74 +108,68 @@
   </div>
  </div>
 
+ <div id="wall-page">
+  <div class="row">
+      <div class="col s12 m6">
+          <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                  <span class="card-title">Post to Greater Phoenix Live Events wall:</span>
 
-<div class="container">
- <div id="weather-page">
-   <h1>Weather Page</h1> 
-   <p id="location">The Valley of the Sun</p>
-   <p><span id="day-time"></span></p>
-   <div>
-     <canvas id="condition" width="64" height="64"></canvas>
-     <span id="temp">75</span><span id="units"></span><br>
-   </div>
-   <div>
-     <div id="fah">F</div>
-     <div id="cel">C</div>
-   </div>
- </div>
+                  <div class="row">
+                    <form class="col s12">
+                      <div class="row">
+                        <div class="input-field col s6">
+                          <input placeholder="Wikiup, AZ" id="home-town" type="text" class="validate">
+                          <label for="hometown">Home Town</label>
+                        </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="planned-event" type="text" class="validate">
+                          <label for="planned-event">Event You Plan On Attending</label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="input-field col s12">
+                          <input id="party-size" type="number" class="validate">
+                          <label for="party-size">How Many People Attending</label>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+
+              </div>
+              <div class="card-action">
+                  <button class="btn waves-effect waves-light" type="submit" name="action" id="add-info-button">Submit
+                      <i class="material-icons right">send</i>
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
 </div>
 
+<div class="row">
+<div class="col-lg-12">
 
-  <div id="wall-page">
-      <div class="row">
-          <div class="col s12 m6">
-              <div class="card blue-grey darken-1">
-                  <div class="card-content white-text">
-                      <span class="card-title">Post to Greater Phoenix Live Events wall:</span>
-    
-                      <div class="row">
-                        <form class="col s12">
-                          <div class="row">
-                            <div class="input-field col s6">
-                              <input placeholder="Wikiup, AZ" id="home-town" type="text" class="validate">
-                              <label for="hometown">Home Town</label>
-                            </div>
-    
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input id="planned-event" type="text" class="validate">
-                              <label for="planned-event">Event You Plan On Attending</label>
-                            </div>
-                          </div>
-    
-                          <div class="row">
-                            <div class="input-field col s12">
-                              <input id="party-size" type="number" class="validate">
-                              <label for="party-size">How Many People Attending</label>
-                            </div>
-                          </div>
-                        </form>
-                      </div>
-    
-                  </div>
-                  <div class="card-action">
-                      <button class="btn waves-effect waves-light" type="submit" name="action" id="add-info-button">Submit
-                          <i class="material-icons right">send</i>
-                      </button>
-                  </div>
-                </div>
-            </form>
-          </div>
-
-        </div>
-        <div class="card-action">
-          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
-            <i class="material-icons right">send</i>
-          </button>
-        </div>
-      </div>
-    </div>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h3 class="panel-title"><strong><i>Trending:</i></strong></h3>
   </div>
+  <div class="panel-body">
+    <table class="responsive-table" id="wall-table">
+      <thead>
+        <tr>
+          <th scope="col">Home Town</th>
+          <th scope="col">Event</th>
+          <th scope="col">Attending</th>
+        </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+</div>
 </div>
 
 
@@ -190,30 +184,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script>
 
   <!--sidenav-->
-
-<div class="row">
-  <div class="col-lg-12">
-
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title"><strong><i>Trending:</i></strong></h3>
-      </div>
-      <div class="panel-body">
-        <table class="responsive-table" id="wall-table">
-          <thead>
-            <tr>
-              <th scope="col">Home Town</th>
-              <th scope="col">Event</th>
-              <th scope="col">Attending</th>
-            </tr>
-          </thead>
-        </table>
-      </div>
-    </div>
-  </div>
-</div>
-
-
   <!--Materializecss Slider-->
   <script>
     $(document).ready(function () {
