@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Custom Stylesheet */
 /**
  * Use this file to override Materialize files so you can update
@@ -55,3 +56,10 @@ p {
 footer.page-footer {
   margin: 0;
 }
+=======
+#results .card-title {
+    font-size: 35px;
+    font-weight: bolder;
+    background: rgba(0, 0, 100, 0.507);
+}
+>>>>>>> 2a2668fe9880b8f68c2c1ed283844046e0724a9a
