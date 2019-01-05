@@ -42,15 +42,17 @@ wallPageDatabase.ref().on("child_added", function(childSnapshot, prevChildKey){
     console.log(childSnapshot.val());
 
     var tableHomeTown = childSnapshot.val().home
-    var tableevent = childSnapshot.val().event
-    var tablesize = childSnapshot.val().size
-})
+    var tableEvent = childSnapshot.val().event
+    var tableSize = childSnapshot.val().size
 
-$("#train-table > tbody").append("<tr><td>" + tableName + 
-"</td><td>" + tableDestination + "</td><td>" + tableFrequency +
-tableFrequency + "</td><td>" + trainArrival + "</td><td>" +trainMinutes +
-"</td><tr>");
-  
+console.log("home", tableHomeTown);
+console.log("event",tableEvent);
+console.log("size",tableSize);
+
+$("#wall-table > tbody").append("<tr><td>" + tableHomeTown + 
+"</td><td>" + tableEvent + "</td><td>" + tableSize + "</td><tr>");
+});
+
 // auth key EVENTBRITE
 var authEventKey = 'ZTWSATUDOEFRKTLCTYET';
 
