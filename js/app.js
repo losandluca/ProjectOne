@@ -37,6 +37,19 @@ $("#party-size").val("");
 
 return false;
 });
+
+wallPageDatabase.ref().on("child_added", function(childSnapshot, prevChildKey){
+    console.log(childSnapshot.val());
+
+    var tableHomeTown = childSnapshot.val().home
+    var tableevent = childSnapshot.val().event
+    var tablesize = childSnapshot.val().size
+})
+
+$("#train-table > tbody").append("<tr><td>" + tableName + 
+"</td><td>" + tableDestination + "</td><td>" + tableFrequency +
+tableFrequency + "</td><td>" + trainArrival + "</td><td>" +trainMinutes +
+"</td><tr>");
   
 // auth key EVENTBRITE
 var authEventKey = 'ZTWSATUDOEFRKTLCTYET';
