@@ -3,8 +3,8 @@ var authEventKey = 'ZTWSATUDOEFRKTLCTYET';
 
 // var queryTerm = "";
 
-// query URL for EVENTBRITE
 var $resultsContainer;
+
 var $eventsTab;
 var $weatherTab;
 var $wallTab;
@@ -16,28 +16,29 @@ var $wallPage;
 var pages;
 
 $(document).ready(function(){
-  $resultsContainer = $("#results");
-   
-   $eventsTab = $("#events-tab");
-   $weatherTab = $("#weather-tab");
-   $wallTab = $("#wall-tab");
-   
-   $eventsPage = $("#events-page");
-   $weatherPage = $("#weather-page");
-   $wallPage = $("#wall-page");
-
-   pages = [$eventsPage, $weatherPage, $wallPage];
-
+    $resultsContainer = $("#results");
+    
+    $eventsTab = $("#events-tab");
+    $weatherTab = $("#weather-tab");
+    $wallTab = $("#wall-tab");
+    
+    $eventsPage = $("#events-page");
+    $weatherPage = $("#weather-page");
+    $wallPage = $("#wall-page");
+    
+    pages = [$eventsPage, $weatherPage, $wallPage];
+    
     //set up listeners for tabs
     $eventsTab.click(() => selectPage($eventsPage));
     $weatherTab.click(() => selectPage($weatherPage));
     $wallTab.click(() => selectPage($wallPage));
-
+    
     //Always start on event page
     selectPage($eventsPage);
-
+    
 });
 
+// functions
 function selectPage($selectedPage){
     //hide everything
     pages.forEach( ($page) => {
@@ -46,26 +47,42 @@ function selectPage($selectedPage){
     $selectedPage.show();
 }
 
-// functions
+// query URL for EVENTBRITE
 function runEventQuery(queryTerm) {
-    var queryURL = 'https://www.eventbriteapi.com/v3/events/search/?q=' + queryTerm + '&sort_by=date&location.address=phoenix&location.within=25mi&token=' + authEventKey;
+    var queryURL = 'https://www.eventbriteapi.com/v3/events/search/?q=' + queryTerm + '&sort_by=best&location.address=phoenix&location.within=25mi&token=' + authEventKey;
+    
+    //date&location.address=phoenix
 
     // ajax call
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-
+        console.log(response);
         $resultsContainer.empty();
-            response.events.forEach((eventBriteEvent) => {
+        response.events.forEach((eventBriteEvent) => {
                 var logoURL= eventBriteEvent.logo.original.url;
                 var image = $("<img>").attr("src", logoURL);
                 var eventName = eventBriteEvent.name.text;
 
                 var eventDesc = eventBriteEvent.description.text;
+                //start
                 var eventStart = eventBriteEvent.start.local;
+                var eventStartIn = moment(eventStart).fromNow();
+                var eventStartShort = moment(eventStart).format('dddd [,] MMM Do');
+                var eventStartTime = moment(eventStart).format('h:mm:ss a');
+
+                //end
                 var eventEnd = eventBriteEvent.end.local;
-                
+                var eventEndShort = moment(eventEnd).format('dddd, MMM Do');
+                var eventEndTime = moment(eventEnd).format('h:mm:ss a');
+
+                //url
+                var ebClick = eventBriteEvent.url;
+
+
+
+
                 var $col = $("<div/>", { class: "col s12 m7" }),
                     $card = $("<div/>", { class: "card" }),
                     $cardImg = $("<div/>", { class: "card-image"}),
@@ -76,14 +93,16 @@ function runEventQuery(queryTerm) {
                 
                 $cardImg.append(image); 
                 $cardImg.append("<span class='card-title'>" + eventName + "</span>");
-                $cardContent.append("<p><b>Description : </b>" + eventDesc + "</p>");
-                $cardContent.append("<p><b>Start : </b>" + new Date(eventStart) + "</p>");
-                $cardContent.append("<p><b>End : </b>" + new Date(eventEnd) + "</p>");
-
+                $cardContent.append("<p><b>Start : </b>" + eventStartIn + "<br>" + eventStartShort + "<b> at </b>" + eventStartTime + "</p>");
+                $cardContent.append("<p><b>End : </b><br>" + eventEndShort + "<b> at </b>" + eventEndTime + "</p>");
+                $cardContent.append("<p><b>Link : </b><span><a href='" + ebClick + "'>Go to Eventbrite</a></span>");
+                $cardContent.append("<p class='comment'><b>Description : </b>" + eventDesc + "</p>");
+                $(".comment").shorten();
                 $card.append($cardImg);
                 $card.append($cardContent);
 
                 $resultsContainer.append($col);
+                    
             });       
 
         });
