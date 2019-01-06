@@ -214,8 +214,8 @@ function runWeatherQuery() {
             var maxTemp = weatherEvent.temp.max;
             var windSpeed = weatherEvent.speed;
             var humidity = weatherEvent.humidity;
-
-            var dateTimeString = moment.unix(date).format("MM-DD-YYYY")
+            
+            var dateTimeString = moment.unix(date).format("dddd, MMMM Do YYYY")
             console.log(dateTimeString);
 
             // append results to table!
