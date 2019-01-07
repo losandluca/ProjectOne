@@ -195,7 +195,6 @@ function runWeatherQuery() {
 // run weather function
 runWeatherQuery();
 
-// ===========================================================================
 // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBbBXnNFqDNP2pG-BVTvpmUqgh6UdCr3wo",
@@ -204,49 +203,56 @@ var config = {
     projectId: "groupprojectone-12d0c",
     storageBucket: "groupprojectone-12d0c.appspot.com",
     messagingSenderId: "866266191637"
-  };
-  firebase.initializeApp(config);
+};
+firebase.initializeApp(config);
 
-  var wallPageDatabase = firebase.database();
+var wallPageDatabase = firebase.database();
 
-  $("#add-info-button").on("click", function(){
+// onclick function for user attending event!
+$("#add-info-button").on("click", function () {
+    event.preventDefault();
 
     var homeTown = $("#home-town").val().trim();
     var plannedEvent = $("#planned-event").val().trim();
     var partySize = $("#party-size").val().trim();
 
     var informationAdded = {
-        home : homeTown,
-        event : plannedEvent,
-        size : partySize
-  };
+        home: homeTown,
+        event: plannedEvent,
+        size: partySize
+    };
+    // push info to firebase
+    wallPageDatabase.ref().push(informationAdded);
 
-wallPageDatabase.ref().push(informationAdded);
+    console.log(homeTown);
+    console.log(plannedEvent);
+    console.log(partySize);
 
-console.log(homeTown);
-console.log(plannedEvent);
-console.log(partySize);
+    // alert("Your information has been added"); **no alerts per requirements.**
 
-alert("Your information has been added");
+    $("#home-town").val("");
+    $("#planned-event").val("");
+    $("#party-size").val("");
 
-$("#home-town").val("");
-$("#planned-event").val("");
-$("#party-size").val("");
-
-return false;
+    return false;
 });
 
-wallPageDatabase.ref().on("child_added", function(childSnapshot, prevChildKey){
-    console.log(childSnapshot.val());
+wallPageDatabase.ref().on("child_added", function (snapshot) {
+    console.log(snapshot.val());
+    var sv = snapshot.val();
 
-    var tableHomeTown = childSnapshot.val().home
-    var tableEvent = childSnapshot.val().event
-    var tableSize = childSnapshot.val().size
+    var tableHomeTown = sv.home
+    var tableEvent = sv.event
+    var tableSize = sv.size
 
-console.log("home", tableHomeTown);
-console.log("event",tableEvent);
-console.log("size",tableSize);
+    console.log("home", tableHomeTown);
+    console.log("event", tableEvent);
+    console.log("size", tableSize);
 
-$("#wall-table > tbody").append("<tr><td>" + tableHomeTown + 
-"</td><td>" + tableEvent + "</td><td>" + tableSize + "</td><tr>");
+    // append firebase data to table
+    $("#wall-table").append(
+        "<tr><td>" + tableHomeTown +
+        "</td><td>" + tableEvent +
+        "</td><td>" + tableSize +
+        "</td><tr>");
 });
