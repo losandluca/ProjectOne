@@ -34,13 +34,13 @@ $(document).ready(function () {
     $eventsTab.click(() => selectPage($eventsPage));
     $weatherTab.click(() => selectPage($weatherPage));
     $wallTab.click(() => selectPage($wallPage));
-    
+
     //Always start on event page
     selectPage($eventsPage);
     
     // slider pictures
     $('.slider').slider({ full_width: true });
-    
+
 });
 
 
@@ -167,8 +167,8 @@ function runWeatherQuery() {
             var maxTemp = weatherEvent.temp.max;
             var windSpeed = weatherEvent.speed;
             var humidity = weatherEvent.humidity;
-
-            var dateTimeString = moment.unix(date).format("MM-DD-YYYY")
+            
+            var dateTimeString = moment.unix(date).format("dddd, MMMM Do YYYY")
             console.log(dateTimeString);
 
             // append results to table!
@@ -176,9 +176,9 @@ function runWeatherQuery() {
                 "<td> " + dateTimeString +
                 "<td>" + minTemp + '°F' +
                 "<td>" + maxTemp + '°F' +
-                "<td>" + windSpeed + ' m/h'+
-                "<td>" + humidity +'%'+
-                "</td>");    
+                "<td>" + windSpeed + ' m/h' +
+                "<td>" + humidity + '%' +
+                "</td>");
 
 
             // weather img icon
