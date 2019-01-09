@@ -148,7 +148,7 @@ $('#searchForm').submit(function (event) {
 
 // ======================================================================================================================================================
 // query URL for WEATHER
-var queryWeatherURL = 'http://api.openweathermap.org/data/2.5/forecast/daily?q=phoenix&APPID=001b0f58045147663b1ea518d34d88b4&units=imperial&cnt=5';
+var queryWeatherURL = 'https://api.openweathermap.org/data/2.5/forecast/daily?q=phoenix&APPID=001b0f58045147663b1ea518d34d88b4&units=imperial&cnt=5';
 
 
 // weather function
